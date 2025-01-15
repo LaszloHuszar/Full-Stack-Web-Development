@@ -1,0 +1,101 @@
+Passing string to Child:
+-------------------------
+
+import Hero from './component/Hero';
+
+const App = () => {
+
+  return(
+    <div>
+      <Hero title="Learn with Laszlo Huszar" des="In details information"/>
+    </div>
+  );
+  
+};
+
+export default App;
+
+*************************
+
+const Hero = (props) => {
+    return (
+        <div>
+            <h1>{props.title}</h1>
+            <p>{props.des}</p>
+        </div>
+    );
+};
+
+export default Hero;
+
+Passing object to Child:
+-------------------------
+
+
+import Hero from './component/Hero';
+
+const App = () => {
+
+  const ItemObj = {
+    name: 'Laszlo Huszar',
+    age: 22,
+    city: 'Berzence'
+  }
+
+  return(
+    <div>
+      <Hero item={ItemObj} />
+    </div>
+  );
+  
+};
+
+export default App;
+
+********************
+
+const Hero = (props) => {
+    return (
+        <div>
+            <ul>
+                <li>Name: {props.item['name']}</li>
+                <li>Age: {props.item['age']}</li>
+                <li>City: {props.item['city']}</li>
+            </ul>
+        </div>
+    );
+};
+
+export default Hero;
+
+Passing function to Child:
+--------------------------
+
+import Hero from './component/Hero';
+
+const App = () => {
+
+const BtnClick=()=>{
+  alert("Hello Laci!");
+}
+  return(
+    <div>
+      <Hero item={BtnClick} />
+    </div>
+  );
+  
+};
+
+export default App;
+
+***********************
+
+const Hero = (props) => {
+    return (
+        <div>
+            <button onClick={props.item}>Submit</button>
+        </div>
+    );
+};
+
+export default Hero;

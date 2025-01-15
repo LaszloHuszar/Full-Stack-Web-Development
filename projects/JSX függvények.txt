@@ -1,0 +1,128 @@
+JSX függvények
+……………………………………
+Loop:
+-----
+
+const App = () => {
+  const city = ['Dhaka', 'USA', 'Delhi', 'CTG'];
+
+  return (
+    <div>
+      <ul>
+        {
+          city.map((item,i)=>{
+            return <li key={i.toString()}>{item}</li>
+          })
+        }
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+
+
+If:
+---
+
+const App = () => {
+  let marks = 81;
+  return (
+    <div>
+      {(
+        ()=>{
+          if(marks>80 && marks<100)
+            {
+              return <h1>A+</h1>
+            }
+          else if(marks>70 && marks<80)
+            {
+              return <h1>A</h1>
+            }
+          else if(marks>60 && marks<70)
+            {
+              return <h1>A-</h1>
+            }
+          else
+            {
+              return <h1>F</h1>
+            }
+        }
+      )()}
+    </div>
+  );
+};
+
+export default App;
+
+If2:
+------
+const LoginStatusBtn=(status)=>{
+  if(status)
+  {
+    return <button>Logout</button>
+  }
+  else
+  {
+    return <button>Login</button>
+  }
+}
+
+const App = () => {
+
+  return(
+    <div>
+      <h1>Login Status</h1>
+      {LoginStatusBtn(false)}
+    </div>
+  );
+
+
+
+  
+};
+
+export default App;
+
+Case:
+-----
+const App = () => {
+
+  const status = false;
+
+  switch(status)
+  {
+    case true:
+      return <button>Logout</button>
+    case false:
+      return <button>Login</button>
+    default:
+      return null
+  }
+  
+};
+
+export default App;
+
+Easier if:
+----------
+const App = () => {
+
+  let status = false;
+
+  return(
+    <div>
+      {
+        status?
+        <button>Logout</button>
+        :
+        <button>Login</button>
+      }
+    </div>
+  );
+  
+};
+
+export default App;
+
+

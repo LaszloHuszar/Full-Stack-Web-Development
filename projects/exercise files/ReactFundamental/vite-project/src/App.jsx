@@ -1,17 +1,20 @@
-import Header from './component/Header';
-import Hero from './component/Hero';
-import Contact from './component/Contact';
-import Footer from './component/Footer';
+
 
 const App = () => {
-  return (
+
+  const PostFormData=(event)=>{
+    event.preventDefault();
+  }
+
+  return(
     <div>
-      <Header/>
-      <Hero/>
-      <Contact/>
-      <Footer/>
+      <form onSubmit={PostFormData}>
+        <input placeholder="Name" />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
+  
 };
 
 export default App;
