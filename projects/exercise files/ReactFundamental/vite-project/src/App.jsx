@@ -1,17 +1,21 @@
-
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
 
-  const PostFormData=(event)=>{
-    event.preventDefault();
-  }
-
   return(
     <div>
-      <form onSubmit={PostFormData}>
-        <input placeholder="Name" />
-        <button type="submit">Submit</button>
-      </form>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/about/:id/:name" element={<AboutPage/>}/>
+          <Route path="/contact" element={<ContactPage/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
   
