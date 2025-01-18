@@ -1,3 +1,5 @@
+UseEffect call API using async await:
+---------------------------------------
 import React, { useEffect, useState } from 'react';
 
 const App = () => {
