@@ -12,10 +12,27 @@ export const tmdbApi = createApi({
         }),
        
         // Get Movies By Type
-        getMovies: builder.query({
-            query: () => `/movie/popular?page=${page}&api_key=${tmdbApiKey}`
-        })
+    getMovies: builder.query({
+        query: ({genreIdOrCategoryName,page,searchQuery}) => {
+
+            // Get Movies BY Search
+            if (searchQuery) {
+                return `/search/movie?query=${searchQuery}&page=${page}&api_key=${tmdbApiKey}`;
+            }
+     
+            // Get Movies BY Category
+            if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
+                return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
+            }
+            // Get Movies BY genre
+            if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
+                return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
+            }
+            // Get Populer Movies
+            return `/movie/popular?page=${page}&api_key=${tmdbApiKey}`;
+        }
+    }),
     })
 });
 
-export const {useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
+export const { useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
