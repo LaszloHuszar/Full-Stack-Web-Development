@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import useStyles from './sidestyles';
@@ -11,13 +11,18 @@ import { useDispatch, useSelector } from 'react-redux';
 const redLogo = 'https://i.ibb.co/ft4skBS/logored.png';
 const blueLogo = 'https://i.ibb.co/5K6vdzx/logoblue.png';
 
-const Sidebar = ({setMoblieOpen}) => {
-
+const Sidebar = ({setMobileOpen}) => {
     const theme = useTheme();
     const classes = useStyles();
     const { data, isFetching } = useGetGenresQuery();
+    // console.log(data);
     const dispatch = useDispatch();
     const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+    // console.log(genreIdOrCategoryName);
+
+    useEffect(() => {
+        setMobileOpen(false);
+    },[genreIdOrCategoryName]);
 
     const categories = [
         { label: 'Popular', value: 'popular' },

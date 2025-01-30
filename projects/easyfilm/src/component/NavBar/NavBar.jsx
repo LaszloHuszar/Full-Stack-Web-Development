@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import {Menu, AccountCircle, Brightness4, Brightness7} from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
@@ -9,6 +9,7 @@ import Search from '../Search/Search';
 import { fetchToken,createSessionId,moviesApi } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser,userSelector } from '../../features/auth';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 const NavBar = () => {
 
@@ -21,6 +22,8 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const token = localStorage.getItem('request_token');
     const sessionIdFromLocalStorage = localStorage.getItem('session_id');
+
+    const colorMode = useContext(ColorModeContext);
 
     useEffect(() => {
         const logInUser = async () => {
@@ -54,7 +57,7 @@ const NavBar = () => {
                             <Menu/>
                         </IconButton>
                     )}
-                    <IconButton color='inherit' sx={{ml:1}} onClick={()=>{}}>
+                    <IconButton color='inherit' sx={{ ml:1 }} onClick={colorMode.toggleColorMode}>
                         {theme.palette.mode === 'dark'  ? <Brightness7/>:<Brightness4/>}
                     </IconButton>
                         {!isMobile && <Search/>}
@@ -75,7 +78,7 @@ const NavBar = () => {
                                 <Avatar
                                     style={{width: 30, height: 30}}
                                     alt='Profile Image'
-                                    src='https://media.istockphoto.com/id/1327592449/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=yqoos7g9jmufJhfkbQsk-mdhKEsih6Di4WZ66t_ib7I='
+                                    src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                                 />
                             </Button>
                         )}
