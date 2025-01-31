@@ -1,10 +1,13 @@
 import React,{useState, useMemo, createContext} from 'react';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
+
 export const ColorModeContext = createContext();
+
 const ToggleColorMode = ({ children }) => {
     const [mode, setMode] = useState(() => {
         return localStorage.getItem('themeMode') || 'light';
     });
+
     const toggleColorMode = () => {
         setMode((prevMode) => {
             const newMode = prevMode === 'light' ? 'dark' : 'light';
@@ -12,6 +15,7 @@ const ToggleColorMode = ({ children }) => {
             return newMode;
         })
     };
+    
     const theme = useMemo(() => createTheme({
         palette: {
             mode,

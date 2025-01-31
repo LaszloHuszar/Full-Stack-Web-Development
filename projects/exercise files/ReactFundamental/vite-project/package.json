@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.76",
     "bootstrap": "^5.3.3",
     "milligram": "^1.4.1",
     "react": "^18.3.1",
